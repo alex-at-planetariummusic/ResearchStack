@@ -71,17 +71,23 @@ public abstract class FixedSubmitBarLayout extends FrameLayout implements StepLa
     }
 
     private void onScrollChanged(ScrollView scrollView, View submitBarGuide, View submitBar) {
-        int scrollY = scrollView.getScrollY();
-        int guidePosition = submitBarGuide.getTop() - scrollY;
-        int guideHeight = submitBarGuide.getHeight();
-        int yLimit = scrollView.getHeight() - guideHeight;
+//        int scrollY = scrollView.getScrollY();
+//        int guidePosition = submitBarGuide.getTop() - scrollY;
+//        int guideHeight = submitBarGuide.getHeight();
+//        int yLimit = scrollView.getHeight() - guideHeight;
+//
+//        if (guidePosition <= yLimit) {
+//            ViewCompat.setTranslationY(submitBar, 0);
+//        } else {
+//            int translationY = guidePosition - yLimit;
+//            ViewCompat.setTranslationY(submitBar, translationY);
+//        }
 
-        if (guidePosition <= yLimit) {
-            ViewCompat.setTranslationY(submitBar, 0);
-        } else {
-            int translationY = guidePosition - yLimit;
-            ViewCompat.setTranslationY(submitBar, translationY);
-        }
+          // Hack to fix bug where the skip/next buttons wouldn't appear if the keyboard was
+          // open on the previous survey page.
+          // See: https://github.com/ResearchStack/ResearchStack/issues/361#issue-214469580
+          ViewCompat.setTranslationY(submitBar, 0);
+        
 
     }
 }
